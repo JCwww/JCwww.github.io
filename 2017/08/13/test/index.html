@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JCwww,JCwww.me,学习" />
+  <meta name="keywords" content="爬虫,requests," />
 
 
 
@@ -93,12 +93,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="JCwww">
-<meta property="og:url" content="http://jcwww.me/index.html">
+<meta name="description" content="Requests库简介与安装Requests库是python语言里简单易用的HTTP库，是基于urllib编写的，采用的是Apache2 Licensed开源协议的HTTP库。后面学习的爬虫功能将基于requests库实现。 在MAC OS下为python2安装requests库：1pip install requests 在MAC OS下为python3安装requests库：1pip3 ins">
+<meta name="keywords" content="爬虫,requests">
+<meta property="og:type" content="article">
+<meta property="og:title" content="爬虫 - Requests库（1）">
+<meta property="og:url" content="http://jcwww.me/2017/08/13/test/index.html">
 <meta property="og:site_name" content="JCwww">
+<meta property="og:description" content="Requests库简介与安装Requests库是python语言里简单易用的HTTP库，是基于urllib编写的，采用的是Apache2 Licensed开源协议的HTTP库。后面学习的爬虫功能将基于requests库实现。 在MAC OS下为python2安装requests库：1pip install requests 在MAC OS下为python3安装requests库：1pip3 ins">
+<meta property="og:updated_time" content="2017-08-13T15:53:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JCwww">
+<meta name="twitter:title" content="爬虫 - Requests库（1）">
+<meta name="twitter:description" content="Requests库简介与安装Requests库是python语言里简单易用的HTTP库，是基于urllib编写的，采用的是Apache2 Licensed开源协议的HTTP库。后面学习的爬虫功能将基于requests库实现。 在MAC OS下为python2安装requests库：1pip install requests 在MAC OS下为python3安装requests库：1pip3 ins">
 
 
 
@@ -126,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://jcwww.me/"/>
+  <link rel="canonical" href="http://jcwww.me/2017/08/13/test/"/>
 
 
 
 
 
-  <title>JCwww</title>
+  <title>爬虫 - Requests库（1） | JCwww</title>
   
 
 
@@ -167,9 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -272,9 +275,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -300,9 +303,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/13/test/" itemprop="url">爬虫 - Requests库（1）</a></h1>
+          <h1 class="post-title" itemprop="name headline">爬虫 - Requests库（1）</h1>
         
 
         <div class="post-meta">
@@ -349,172 +350,104 @@
       
 
       
+        <h1 id="Requests库简介与安装"><a href="#Requests库简介与安装" class="headerlink" title="Requests库简介与安装"></a>Requests库简介与安装</h1><p>Requests库是python语言里简单易用的HTTP库，是基于urllib编写的，采用的是Apache2 Licensed开源协议的HTTP库。后面学习的爬虫功能将基于requests库实现。</p>
+<p>在MAC OS下为python2安装requests库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install requests</div></pre></td></tr></table></figure></p>
+<p>在MAC OS下为python3安装requests库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip3 install requests</div></pre></td></tr></table></figure></p>
+<p>报错的话在 “pip/pip3” 前面加上 “sudo” 即可。</p>
+<h1 id="Resquests库的主要方法"><a href="#Resquests库的主要方法" class="headerlink" title="Resquests库的主要方法"></a>Resquests库的主要方法</h1><p>Requests库中有7个主要的方法，分别是</p>
+<blockquote>
+<p>requests.request()<br>requests.get()<br>requests.head()<br>requests.post()<br>requests.put()<br>requests.patch()<br>requests.delete()</p>
+</blockquote>
+<p>其中requests.request()为最基本的方法，其功能是构造一个请求，用于支撑其余各方法，换言之，其余的方法均可看做requests.request()方法的提取与延伸。</p>
+<p>其余方法的功能与HTTP协议中对资源的操作一一对应。在HTTP协议中，有如下方法及功能：</p>
+<blockquote>
+<p>GET: 请求获取URL位置的资源<br>HEAD: 请求获取URL位置的资源的相应消息报告，即该资源的头部信息<br>POST: 请求向URL位置的资源后附加新的数据<br>PUT: 请求向URL位置存储一个资源，覆盖原URL位置的资源<br>PATCH: 请求拒不更新URL位置的资源，即改变该处资源部分内容<br>DELETE: 请求删除URL位置存储的资源</p>
+</blockquote>
+<p>于是requests库中对应的方法的功能，即从HTML网页获取或向其提交对应的资源。但是由于网络安全以及种种限制，我们并不能随意向任何网页提交修改，对于爬虫功能我们主要是为了获取资源，所以上述requests库中我们主要使用requests.get()功能以及requests.head()功能。</p>
+<h1 id="requests-get-方法"><a href="#requests-get-方法" class="headerlink" title="requests.get()方法"></a>requests.get()方法</h1><p>使用requests.get()方法，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">r = requests.get(http://www.jcwww.me)</div></pre></td></tr></table></figure></p>
+<p>使用后，会构造一个向服务器请求资源的Requests对象，以及返回一个包含服务器资源的Response对象。</p>
+<p>返回的Response对象中包括以下属性：</p>
+<blockquote>
+<p>r.status_code: HTTP请求的返回状态，返回200表示成功，其余均表示失败，具体失败的原意可以依靠返回的代码查询<br>r.text: HTTP相应内容的字符串形式<br>r.encoding: 从HTTP的header中猜测的相应内容编码方式<br>r.apparent_encoding: 从HTTP内容中分析出的相应内容编码方式<br>r.content: HTTP相应内容的二进制形式</p>
+</blockquote>
+<p>在爬取网页时，异常处理非常重要，请求的Requests库的异常包括：</p>
+<blockquote>
+<p>requests.ConnectionError: 网络连接错误异常<br>requests.HTTPError: HTTP错误异常<br>requests.URLRequired: URL缺失异常<br>requests.TooManyRedirects: 超过最大重定向次数<br>requests.ConnectTimeout: 连接远程服务器超时异常<br>requests.Timeout: 请求URL超时</p>
+</blockquote>
+<h1 id="爬取网页的通用代码框架"><a href="#爬取网页的通用代码框架" class="headerlink" title="爬取网页的通用代码框架"></a>爬取网页的通用代码框架</h1><p>一个简单的包含异常处理的通用代码框架如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">import requests</div><div class="line">def getHTMLText(url):</div><div class="line">    try:</div><div class="line">        r = requests.get(url, timeout=30)</div><div class="line">        r.raise_for_status()</div><div class="line">        r.encoding = r.apparent_encoding</div><div class="line">        return r.text</div><div class="line">    except:</div><div class="line">        return &quot;ERROR&quot;</div><div class="line">    </div><div class="line">if __name__ == &quot;__main__&quot;:</div><div class="line">    url = &quot;www.jcwww.me&quot;</div><div class="line">    print(getHTMLText(url))</div></pre></td></tr></table></figure></p>
+<p>这个框架中使用了try-catch语法，其中关键性的一句为：</p>
+<blockquote>
+<p>r.raise_for_status<br>当返回的状态值不是200是，就会产生异常，报错“ERROR”。<br>其中令“r.encoding = r.apparent_encoding”可使网页内容采取更可读的编码方式。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
         
-          
-          Requests库简介与安装Requests库是python语言里简单易用的HTTP库，是基于urllib编写的，采用的是Apache2 Licensed开源协议的HTTP库。后面学习的爬虫功能将基于requests库实现。
-在MAC OS下为python2安装requests库：1pip inst
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/13/test/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
-      
-    </div>
-
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://jcwww.me/2017/06/16/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JCwww">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://orw42yh2x.bkt.clouddn.com/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JCwww">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/16/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-16T14:26:36+08:00">
-                2017-06-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
           
-            
+            <a href="/tags/requests/" rel="tag"># requests</a>
           
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          恶俗但伴着些许快感的标题。
-本科毕业的暑假在家。这是第一次想开始认真地写点什么，作为记录自己学习历程的笔记和生活的一些点滴感悟，当然主要还是为了学习，欢迎大家和我交流。好久没有写过东西，文笔上也不敢对自己有什么期待，只求能忠于自己。如果以后内容多了会考虑把技术博客和生活博客分开，现在就先放一起，反正
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/16/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/16/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
+          <span class="post-nav-divider"></span>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -522,6 +455,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -541,8 +478,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://orw42yh2x.bkt.clouddn.com/head.png"
@@ -606,6 +552,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Requests库简介与安装"><span class="nav-number">1.</span> <span class="nav-text">Requests库简介与安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Resquests库的主要方法"><span class="nav-number">2.</span> <span class="nav-text">Resquests库的主要方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#requests-get-方法"><span class="nav-number">3.</span> <span class="nav-text">requests.get()方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#爬取网页的通用代码框架"><span class="nav-number">4.</span> <span class="nav-text">爬取网页的通用代码框架</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -708,10 +670,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
