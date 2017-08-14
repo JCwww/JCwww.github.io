@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>http://jcwww.me/2017/08/13/crawler-requests(1)/</loc>
+    <lastmod>2017-08-14T07:55:01.000Z</lastmod>
+    <data>
+        <display>
+        <title>爬虫 - Requests库（1）</title>
+        <pubTime>2017-08-13T15:44:08.000Z</pubTime>
+        
+        <tag>爬虫</tag>
+         
+        <tag>requests</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+    
+  <url>
+    <loc>http://jcwww.me/2017/06/16/hello-world/</loc>
+    <lastmod>2017-06-21T14:56:21.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hello World</title>
+        <pubTime>2017-06-16T06:26:36.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+</urlset>
